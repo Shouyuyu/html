@@ -1,0 +1,37 @@
+<html>
+<body onload="conv()">
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<!--引入某个版本，如3.5.0版本-->
+<!-- <script src="https://cdn.jsdelivr.net/gh/zh-lx/pinyin-pro@3.5.0/dist/pinyin-pro.js"></script> -->
+<!--引入最新版本-->
+<script src="https://cdn.jsdelivr.net/gh/zh-lx/pinyin-pro@latest/dist/pinyin-pro.js"></script>
+<script>
+
+ //汉字转为拼音
+  function conv()
+  {
+    var { pinyin } = pinyinPro;
+    var txt = document.getElementById("intxt").value;
+    txt = getRandomChineseWord();
+   document.getElementById("word").innerHTML= txt ;
+    var aa =  pinyin(txt); // 'hàn yǔ pīn yīn'
+    document.getElementById("show").innerHTML= aa; 
+  }
+ 
+  //随机汉字
+  function getRandomChineseWord () {
+    var _rsl = "";
+    var _randomUniCode = Math.floor(Math.random() * (40870 - 19968) + 19968).toString(16);
+    eval("_rsl=" + '"\\u' + _randomUniCode + '"');
+    return _rsl;
+}
+
+</script>
+</head> 
+<div style="font-size:5rem;color:red;text-align: center;">
+  <div ><input id="intxt" type="text" width="200px"><button onclick="conv()">生成</button></div>
+  <div id="show"></div> <div id="word"></div>
+</div>
+</body>
+</html>
